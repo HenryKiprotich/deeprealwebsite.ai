@@ -41,6 +41,31 @@ export default function DashboardPage() {
             </p>
           </div>
 
+          {/* Prompt Engineering */}
+          <div className="bg-white dark:bg-gray-700 p-4 shadow rounded-lg">
+            <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300">
+              <a href="/dashboard/courses/prompt-engineering" className="hover:underline text-indigo-600 dark:text-indigo-400">
+                Prompt Engineering for Transformers (LLMs): ChatGPT & DeepSeek
+              </a>
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                Learn how to write a perfect prompt to get a good response to assist you deliver a quality task
+                in Outlier.
+            </p>
+          </div>
+
+          {/* Data Analysis*/}
+          <div className="bg-white dark:bg-gray-700 p-4 shadow rounded-lg">
+            <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300">
+              <a href="/dashboard/courses/data-analysis" className="hover:underline text-indigo-600 dark:text-indigo-400">
+                Data Analysis with AI
+              </a>
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                Learn fundamental data analysis techniques.
+            </p>
+          </div>
+
           {/* AI Fundamentals */}
           <div className="bg-white dark:bg-gray-700 p-4 shadow rounded-lg">
             <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300">
@@ -99,19 +124,7 @@ export default function DashboardPage() {
             <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
               Explore the ethical implications of AI and how to develop responsible AI solutions that prioritize fairness and transparency.
             </p>
-          </div>
-
-          {/* AI for Business */}
-          <div className="bg-white dark:bg-gray-700 p-4 shadow rounded-lg">
-            <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300">
-              <a href="/dashboard/courses/ai-business" className="hover:underline text-indigo-600 dark:text-indigo-400">
-                AI for Business
-              </a>
-            </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-              Learn how AI is revolutionizing industries and how to implement AI-driven strategies in business environments.
-            </p>
-          </div>
+          </div>          
         </div>
       </main>
     </div>

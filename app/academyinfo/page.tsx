@@ -34,46 +34,13 @@ export default function AcademyInfoPage() {
 
             {/* Course 2 */}
             <div className="bg-indigo-200 p-4 shadow rounded-lg">
-              <h3 className="text-lg font-semibold text-gray-700">AI Fundamentals</h3>
+              <h3 className="text-lg font-semibold text-gray-700">Using ChatGPT and DeepSeek</h3>
               <p className="text-sm text-gray-600 mt-2">
-                Learn the basics of Artificial Intelligence, including its applications, history, and ethical considerations.
+                Prompt Engineering: Learn how to write a perfect prompt to get good and safe content from LLMs and Transformers.
               </p>
             </div>
 
             {/* Course 3 */}
-            <div className="bg-indigo-200 p-4 shadow rounded-lg">
-              <h3 className="text-lg font-semibold text-gray-700">Machine Learning</h3>
-              <p className="text-sm text-gray-600 mt-2">
-                Dive into the world of supervised and unsupervised learning, and understand how machines learn from data.
-              </p>
-            </div>
-
-            {/* Course 4 */}
-            <div className="bg-lime-300 p-4 shadow rounded-lg">
-              <h3 className="text-lg font-semibold text-gray-700">Deep Learning</h3>
-              <p className="text-sm text-gray-600 mt-2">
-                Explore neural networks, convolutional networks, and modern AI architectures used in computer vision and NLP.
-              </p>
-            </div>
-
-            {/* Course 5 */}
-            <div className="bg-lime-300 p-4 shadow rounded-lg">
-              <h3 className="text-lg font-semibold text-gray-700">Natural Language Processing (NLP)</h3>
-              <p className="text-sm text-gray-600 mt-2">
-                Understand how AI processes human language and builds applications like chatbots and speech recognition.
-              </p>
-            </div>
-
-            {/* Course 6 */}
-            <div className="bg-indigo-200 p-4 shadow rounded-lg">
-              <h3 className="text-lg font-semibold text-gray-700">AI Ethics & Responsible AI</h3>
-              <p className="text-sm text-gray-600 mt-2">
-                Explore the ethical implications of AI and how to develop responsible AI solutions that prioritize
-                fairness and transparency. 
-              </p>
-            </div>
-
-            {/* Course 7 */}
             <div className="bg-white p-4 shadow rounded-lg">
               <h3 className="text-lg font-semibold text-gray-700">Data Analysis and Data Analysis with AI</h3>
 
@@ -81,8 +48,8 @@ export default function AcademyInfoPage() {
                 <h3 className="text-lg font-semibold text-gray-700">Data Analysis:</h3>
                 <p className="text-sm bg-indigo-100 text-gray-600 mt-2"> 
                   This course introduces fundamental data analysis techniques, including data cleaning,
-                  analysis, visualization, and statistical methods to extract insights from raw data. You&apos;ll learn to
-                  work with datasets using tools like Excel, SQL, and Python to make informed decisions.
+                  analysis, visualization, and statistical methods to extract insights from raw data. You will learn how to
+                  work with datasets using tools like Excel, SQL, Python [Pandas & Numpy] and Power BI to make informed decisions.
                 </p>
               </div>
 
@@ -90,20 +57,54 @@ export default function AcademyInfoPage() {
                 <h3 className="text-lg font-semibold text-gray-700">Data Analysis with AI:</h3>
                 <p className="text-sm bg-lime-300 text-gray-600 mt-2">
                   This advanced course explores how artificial intelligence enhances data analysis through machine 
-                  learning, automation, and predictive modeling. You will learn how to use AI-powered tools like Python
-                  (Pandas, Scikit-learn), finetuned LLM models, and deep learning frameworks to uncover patterns,
-                  trends, and insights efficiently.
+                  learning, automation, and predictive modeling. You will learn how to use AI to analyze and predict data
+                  starting with the most commonly used Machine Learning (ML) algorithms: Linear regression, Decision trees 
+                  and Random forests and then upskilling by learning how to use finetuned LLM models, and deep learning 
+                  frameworks to uncover patterns, trends, and insights efficiently.
                 </p>
               </div>            
             </div>
 
-            {/* Course 8 */}
+            {/* Course 4 */}
             <div className="bg-indigo-200 p-4 shadow rounded-lg">
-              <h3 className="text-lg font-semibold text-gray-700">Using ChatGPT and DeepSeek</h3>
+              <h3 className="text-lg font-semibold text-gray-700">AI Fundamentals</h3>
               <p className="text-sm text-gray-600 mt-2">
-                Prompt Engineering: Learn how to write a perfect prompt to get good and safe content from LLMs and Transformers.
+                Learn the basics of Artificial Intelligence, including its applications, history, and ethical considerations.
               </p>
             </div>
+
+            {/* Course 5 */}
+            <div className="bg-indigo-200 p-4 shadow rounded-lg">
+              <h3 className="text-lg font-semibold text-gray-700">Machine Learning</h3>
+              <p className="text-sm text-gray-600 mt-2">
+                Dive into the world of supervised and unsupervised learning, and understand how machines learn from data.
+              </p>
+            </div>
+
+            {/* Course 6 */}
+            <div className="bg-lime-300 p-4 shadow rounded-lg">
+              <h3 className="text-lg font-semibold text-gray-700">Deep Learning</h3>
+              <p className="text-sm text-gray-600 mt-2">
+                Explore neural networks, convolutional networks, and modern AI architectures used in computer vision and NLP.
+              </p>
+            </div>
+
+            {/* Course 7 */}
+            <div className="bg-lime-300 p-4 shadow rounded-lg">
+              <h3 className="text-lg font-semibold text-gray-700">Natural Language Processing (NLP)</h3>
+              <p className="text-sm text-gray-600 mt-2">
+                Understand how AI processes human language and builds applications like chatbots and speech recognition.
+              </p>
+            </div>
+
+            {/* Course 8 */}
+            <div className="bg-indigo-200 p-4 shadow rounded-lg">
+              <h3 className="text-lg font-semibold text-gray-700">AI Ethics & Responsible AI</h3>
+              <p className="text-sm text-gray-600 mt-2">
+                Explore the ethical implications of AI and how to develop responsible AI solutions that prioritize
+                fairness and transparency. 
+              </p>
+            </div>           
 
           </div>        
 
