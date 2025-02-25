@@ -77,7 +77,7 @@ export default function AboutPage() {
               <Image src="/CEO.png" alt="Founder 1" width={160} height={160} className="rounded-full object-cover" />
             </div>
             <h3 className="mt-2 text-lg font-semibold text-white">Henry Kiprotich</h3>
-            <p className="text-white text-sm">CEO, Data Analyst & Machine Learning Engineer</p>
+            <p className="text-white text-sm">CEO, Data & AI Solutions Engineer</p>
           </div>
 
           {/* Founder 2 */}

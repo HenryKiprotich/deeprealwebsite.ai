@@ -27,7 +27,7 @@ export default function HomePage() {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % newsItems.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [newsItems.length]);
 
   return (
     <main className="p-8 min-h-screen bg-indigo-100 dark:bg-gray-900">

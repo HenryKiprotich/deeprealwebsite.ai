@@ -1,22 +1,51 @@
+//./app/dashboard/page.tsx
+
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function DashboardPage() {
-  // State to track dark mode
-  const [darkMode] = useState(
-    typeof window !== "undefined" ? localStorage.getItem("theme") === "dark" : false
-  );
+  const router = useRouter();
+  const [authorized, setAuthorized] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Apply dark mode class to <html>
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [darkMode]);
+    // Check for a valid JWT cookie by calling /auth/verify
+    const checkAuth = async () => {
+      try {
+        const res = await fetch("http://localhost:8000/api/auth/verify", {
+          credentials: "include",
+        });
+        if (!res.ok) {
+          router.push("/auth/signinup");
+        } else {
+          setAuthorized(true);
+        }
+      } catch (error) {
+        router.push("/auth/signinup");
+      } finally {
+        setLoading(false);
+      }
+    };
+    checkAuth();
+  }, [router]);
 
+  // While checking authorization
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p>Loading...</p>
+      </div>
+    );
+  }
+
+  // If unauthorized, nothing is rendered (redirection already triggered)
+  if (!authorized) {
+    return null;
+  }
+
+  // Dashboard content rendered only if user is authorized
   return (
     <div className="min-h-screen flex flex-col bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white">
       {/* Header Section */}
@@ -49,12 +78,11 @@ export default function DashboardPage() {
               </a>
             </h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-                Learn how to write a perfect prompt to get a good response to assist you deliver a quality task
-                in Outlier.
+              Learn how to write a perfect prompt to get a good response to assist you deliver a quality task in Outlier.
             </p>
           </div>
 
-          {/* Data Analysis*/}
+          {/* Data Analysis */}
           <div className="bg-white dark:bg-gray-700 p-4 shadow rounded-lg">
             <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300">
               <a href="/dashboard/courses/data-analysis" className="hover:underline text-indigo-600 dark:text-indigo-400">
@@ -62,7 +90,7 @@ export default function DashboardPage() {
               </a>
             </h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-                Learn fundamental data analysis techniques.
+              Learn fundamental data analysis techniques.
             </p>
           </div>
 
@@ -130,3 +158,5 @@ export default function DashboardPage() {
     </div>
   );
 }
+
+

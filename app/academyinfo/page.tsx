@@ -26,8 +26,8 @@ export default function AcademyInfoPage() {
               </p>
               <p className="text-gray-700 font-semibold mt-2">
                 Become a qualified tasker{' '}
-                <a href="/auth/signup" className="text-indigo-600 font-bold hover:underline">
-                  Sign Up
+                <a href="/auth/signinup" className="text-indigo-600 font-bold hover:underline">
+                   Register
                 </a>
               </p>
             </div>
@@ -109,19 +109,11 @@ export default function AcademyInfoPage() {
           </div>        
 
           {/* Enrollment Section */}
-          <div className="mt-10 text-center">
-            <p className="text-gray-700 font-semibold">
-              Enrolled?{' '}
-              <a href="/auth/signin" className="text-indigo-600 font-bold hover:underline">
-                Sign In
+          <div className="mt-10 text-center">            
+              <a href="/auth/signinup" className="text-indigo-600 font-bold hover:underline">
+                Register/Login
               </a>
-            </p>
-            <p className="text-gray-700 font-semibold mt-2">
-              Not Enrolled?{' '}
-              <a href="/auth/signup" className="text-indigo-600 font-bold hover:underline">
-                Sign Up
-              </a>
-            </p>
+            
           </div>
         </div> {/* End of Grid Wrapper */}
       </main>
