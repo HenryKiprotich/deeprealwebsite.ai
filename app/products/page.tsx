@@ -27,7 +27,7 @@ export default function ProductsPage() {
           <div className="mt-6 bg-red-300 p-6 shadow rounded-lg">
             <h3 className="text-xl font-semibold text-gray-800">BrandVibe AI</h3>
             <p className="mt-2 text-gray-600">
-              BrandVibe AI is an AI-powered sentiment analyzer that monitors social media user&aposs views concerning a specific product
+              BrandVibe AI is an AI-powered sentiment analyzer that monitors social media user&apos;s views concerning a specific product
               or service. It uses a fine-tuned cardiffnlp/twitter-roberta-base language processing (NLP) model to classify comments and establish the users intent.
             </p>
             <a href="https://deepscanai.com" target="_blank" className="text-indigo-500 hover:underline mt-2 inline-block">
