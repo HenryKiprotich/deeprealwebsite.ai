@@ -25,18 +25,13 @@ export default function ProductsPage() {
             <Image src="/SocialMedia.png" alt="DeepScanAI Logo" layout="fill" objectFit="contain" />
           </div>
           <div className="mt-6 bg-red-300 p-6 shadow rounded-lg">
-            <h3 className="text-xl font-semibold text-gray-800">DeepScanAI</h3>
+            <h3 className="text-xl font-semibold text-gray-800">BrandVibe AI</h3>
             <p className="mt-2 text-gray-600">
-              DeepScanAI is an AI-powered sentiment analyzer that monitors toxicity on social media by tracking abusive comments 
-              on users&apos; posts. It uses a fine-tuned distilbert natural language processing (NLP) model to detect and analyze hate speech, 
-              cyberbullying, and harmful content in real-time.
-            </p>
-            <p className="mt-2 text-gray-600">
-              The system provides detailed reports on abusive comments, helping users and platforms mitigate harmful interactions 
-              and promote healthier online conversations.
+              BrandVibe AI is an AI-powered sentiment analyzer that monitors social media user's views concerning a specific product
+              or service. It uses a fine-tuned cardiffnlp/twitter-roberta-base language processing (NLP) model to classify comments and establish the users intent.
             </p>
             <a href="https://deepscanai.com" target="_blank" className="text-indigo-500 hover:underline mt-2 inline-block">
-              Learn more about DeepScanAI
+              Try BrandVibe AI
             </a>
           </div>
         </div>
