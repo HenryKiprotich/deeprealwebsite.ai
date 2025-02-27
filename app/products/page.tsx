@@ -30,7 +30,7 @@ export default function ProductsPage() {
               BrandVibe AI is an AI-powered sentiment analyzer that monitors social media user&apos;s views concerning a specific product
               or service. It uses a fine-tuned cardiffnlp/twitter-roberta-base language processing (NLP) model to classify comments and establish the users intent.
             </p>
-            <a href="https://deepscanai.com" target="_blank" className="text-indigo-500 hover:underline mt-2 inline-block">
+            <a href="https://brandvibeai.com" target="_blank" className="text-indigo-500 hover:underline mt-2 inline-block">
               Try BrandVibe AI
             </a>
           </div>
