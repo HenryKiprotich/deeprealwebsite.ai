@@ -26,22 +26,26 @@ export default function TopNavLinks() {
             <Link href="/" className="hover:underline" onClick={() => setIsOpen(false)}>
               Home
             </Link>
-          </li>    
-          <li className="md:inline-block py-2">
-            <Link href="/about" className="hover:underline" onClick={() => setIsOpen(false)}>
-              About Us
-            </Link>
           </li>
-          <li className="md:inline-block py-2">
-            <Link href="/partnerships" className="hover:underline" onClick={() => setIsOpen(false)}>
-              Partnerships
-            </Link>
-          </li>
+                    
           <li className="md:inline-block py-2">
             <Link href="/products" className="hover:underline" onClick={() => setIsOpen(false)}>
               Products
             </Link>
           </li>
+
+          <li className="md:inline-block py-2">
+            <Link href="/partnerships" className="hover:underline" onClick={() => setIsOpen(false)}>
+              Partnerships
+            </Link>
+          </li>
+
+          <li className="md:inline-block py-2">
+            <Link href="/about" className="hover:underline" onClick={() => setIsOpen(false)}>
+              About Us
+            </Link>
+          </li>
+          
           <li className="md:inline-block py-2">
             <Link href="/academyinfo" className="hover:underline" onClick={() => setIsOpen(false)}>
               Deep Real Academy
@@ -50,6 +54,16 @@ export default function TopNavLinks() {
           <li className="md:inline-block py-2">
             <Link href="/research" className="hover:underline" onClick={() => setIsOpen(false)}>
               AI Research
+            </Link>
+          </li>
+          <li className="md:inline-block py-2">
+            <Link href="/datalake" className="hover:underline" onClick={() => setIsOpen(false)}>
+              Data Lake
+            </Link>
+          </li>
+          <li className="md:inline-block py-2">
+            <Link href="/hardware" className="hover:underline" onClick={() => setIsOpen(false)}>
+              Hardware
             </Link>
           </li>
         </ul>

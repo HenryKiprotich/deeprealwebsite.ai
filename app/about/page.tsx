@@ -84,15 +84,15 @@ export default function AboutPage() {
           <div className="text-center">
             <div className="w-40 h-40 mx-auto">
               <Image 
-                src="/FaithAvatar.png"
+                src="/kenny_avatar.png"
                 alt="Founder 2"
                 width={160}
                 height={160}
                 className="rounded-full object-cover"
               />
             </div>
-            <h3 className="mt-2 text-lg font-semibold text-gray-800">Faith Wairimu</h3>
-            <p className="text-white text-sm">CTO & Machine Learning Engineer</p>
+            <h3 className="mt-2 text-lg font-semibold text-gray-800">Kennedy Wambua</h3>
+            <p className="text-white text-sm">CTO, Software Engineer & Cyber Security Specialist</p>
           </div>
 
           {/* Founder 3 */}
