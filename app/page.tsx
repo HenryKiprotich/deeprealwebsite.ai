@@ -5,32 +5,6 @@ import { useState, useEffect } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 export default function HomePage() {
-  // News Slider State
-  const newsItems = [
-    {
-      img: "/remotasks.png",
-      title: "Learn how to make money online through AI.",
-      description:
-        "Discover how AI-driven solutions can help you earn money online through freelancing, automation, and data-driven opportunities.",
-    },
-    {
-      img: "/VetImage.png",
-      title: "Join us in developing a veterinary expert system for diagnosing diseases in animals.",
-      description:
-        "Be part of an AI-powered project focused on improving veterinary healthcare with automated disease diagnosis for animals.",
-    },
-  ];
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  // Auto-slide news every 5 seconds with fade transition
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % newsItems.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [newsItems.length]);
-
   // Items for alternate layout section
   const productItems = [
     {
@@ -77,58 +51,14 @@ export default function HomePage() {
             objectFit="contain"
           />
         </div>
-        <h1 className="text-3xl font-bold p-2">Welcome to Deep Real</h1>
+        <h1 className="text-3xl font-bold p-2">Welcome to DeepReal<span className="text-sm align-super">AI</span></h1>
       </div>
 
-      {/* News Slider Section */}
-      <div className="relative mt-8 w-full max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-xl border-0">
-        <div className="relative h-64">
-          {newsItems.map((item, index) => (
-            <div
-              key={index}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                index === currentIndex ? "opacity-100" : "opacity-0"
-              }`}
-            >
-              <Image
-                src={item.img}
-                alt={item.title}
-                layout="fill"
-                objectFit="cover"
-                className="transform hover:scale-105 transition duration-500"
-              />
-            </div>
-          ))}
-        </div>
-        <div className="p-4 text-center">
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
-            {newsItems[currentIndex].title}
-          </h3>
-          <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
-            {newsItems[currentIndex].description}
-          </p>
-        </div>
-        <button
-          className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full hover:bg-gray-700 transition"
-          onClick={() =>
-            setCurrentIndex((prevIndex) =>
-              prevIndex === 0 ? newsItems.length - 1 : prevIndex - 1
-            )
-          }
-        >
-          <FaChevronLeft size={20} />
-        </button>
-        <button
-          className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full hover:bg-gray-700 transition"
-          onClick={() => setCurrentIndex((prevIndex) => (prevIndex + 1) % newsItems.length)}
-        >
-          <FaChevronRight size={20} />
-        </button>
-      </div>
-
+      {/* Main Content Section */}
       <div className="p-8">
         <div className="text-sm font-semibold tracking-wide text-indigo-500 uppercase">
-          Let us help you explore the world of Artificial Intelligence for research, development, and education.
+          Let us help you explore the world of Artificial Intelligence for
+          research, development, and education.
         </div>
 
         {/* Alternate Layout Section */}
@@ -144,7 +74,8 @@ export default function HomePage() {
                     <div
                       className="bg-cover bg-center text-white p-8 rounded-lg shadow-2xl transform hover:scale-105 transition duration-300"
                       style={{
-                        backgroundImage: "linear-gradient(to right, #4c51bf, #2d3748)",
+                        backgroundImage:
+                          "linear-gradient(to right, #4c51bf, #2d3748)",
                       }}
                     >
                       <p className="text-lg font-bold">{item.text}</p>
@@ -152,7 +83,12 @@ export default function HomePage() {
                   </div>
                   <div className="w-full p-4 md:w-1/2">
                     <div className="relative w-full h-64 rounded-lg overflow-hidden shadow-2xl transform hover:scale-105 transition duration-300">
-                      <Image src={item.src} alt={item.alt} layout="fill" objectFit="cover" />
+                      <Image
+                        src={item.src}
+                        alt={item.alt}
+                        layout="fill"
+                        objectFit="cover"
+                      />
                     </div>
                   </div>
                 </>
@@ -160,14 +96,20 @@ export default function HomePage() {
                 <>
                   <div className="w-full p-4 md:w-1/2">
                     <div className="relative w-full h-64 rounded-lg overflow-hidden shadow-2xl transform hover:scale-105 transition duration-300">
-                      <Image src={item.src} alt={item.alt} layout="fill" objectFit="cover" />
+                      <Image
+                        src={item.src}
+                        alt={item.alt}
+                        layout="fill"
+                        objectFit="cover"
+                      />
                     </div>
                   </div>
                   <div className="w-full p-4 md:w-1/2">
                     <div
                       className="bg-cover bg-center text-white p-8 rounded-lg shadow-2xl transform hover:scale-105 transition duration-300"
                       style={{
-                        backgroundImage: "linear-gradient(to right, #4c51bf, #2d3748)",
+                        backgroundImage:
+                          "linear-gradient(to right, #4c51bf, #2d3748)",
                       }}
                     >
                       <p className="text-lg font-bold">{item.text}</p>
@@ -187,7 +129,7 @@ export default function HomePage() {
           >
             Visit Deep Real Academy
           </a>
-        </div>        
+        </div>
       </div>
     </main>
   );

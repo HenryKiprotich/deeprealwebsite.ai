@@ -61,6 +61,15 @@ export default function TaskingCourseContent() {
           const errorText = await res.text();
           console.error("Error fetching course data:", errorText);
           setError("Error fetching course data.");
+
+          if (res.status === 401) {
+            console.error(
+              "User is not authenticated. Redirecting to sign-in..."
+            );
+            router.push("/auth/signinup"); // Redirect to sign-in page
+          } else {
+            setError("Error fetching course data.");
+          }
         }
       } catch (err) {
         console.error("Network error:", err);
@@ -161,14 +170,16 @@ export default function TaskingCourseContent() {
 
                   {/* Text Area Below Video */}
                   <div className="mt-4 p-4 border border-gray-300 rounded-lg bg-gray-100">
-                    <h4 className="font-semibold mb-2">Additional Information:</h4>
+                    <h4 className="font-semibold mb-2">
+                      Additional Information:
+                    </h4>
                     <p className="text-gray-700 whitespace-pre-line">
                       {subtopic.text_content}
                     </p>
 
                     {/* Related Resources */}
                     {subtopic.documents.length > 0 && (
-                      <div className="mt-2">                        
+                      <div className="mt-2">
                         <ul className="list-disc pl-5">
                           {subtopic.documents.map((doc, docIndex) => (
                             <li key={docIndex}>
