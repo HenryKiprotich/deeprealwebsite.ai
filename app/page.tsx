@@ -122,7 +122,7 @@ export default function HomePage() {
       </header>
 
       {/* Main Content Section */}
-      <div className="p-8 bg-indigo-900 bg-opacity-50 rounded-lg shadow-lg">
+      <div>
         {/* Grid Layout Section - 3 items per row */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {productItems.map((item, index) => (
