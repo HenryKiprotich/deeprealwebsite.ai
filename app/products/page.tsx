@@ -4,9 +4,9 @@ import Image from "next/image";
 
 export default function ProductsPage() {
   return (
-    <main className="p-8 bg-gray-100 min-h-screen">
+    <>
       {/* Header */}
-      <div className="bg-indigo-500 text-white p-6 rounded-lg shadow-lg">
+      <div className="bg-indigo-500 text-white p-6 rounded-lg shadow-lg mt-24">
         <h1 className="text-3xl font-bold">Our Products</h1>
         <p className="mt-2 text-sm">
           Explore our cutting-edge AI-driven products in various industries.
@@ -76,6 +76,6 @@ export default function ProductsPage() {
           </a>
         </p>
       </div>
-    </main>
+    </>
   );
 }

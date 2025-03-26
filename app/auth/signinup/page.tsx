@@ -95,7 +95,7 @@ const AuthForm = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
+    <div className="flex justify-center items-center h-screen">
       <div className="bg-white p-8 rounded-lg shadow-md w-96">
         <h2 className="text-2xl font-bold text-center">{isSignUp ? "Sign Up" : "Sign In"}</h2>
         <p className="text-sm text-gray-500 text-center mb-6">

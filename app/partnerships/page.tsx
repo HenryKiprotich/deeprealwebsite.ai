@@ -4,9 +4,9 @@ import Image from 'next/image';
 
 export default function PartnershipsPage() {
   return (
-    <main className="p-8 bg-gray-100 min-h-screen">
+    <>
       {/* Header */}
-      <div className="bg-indigo-500 text-white p-6 rounded-lg shadow-lg">
+      <div className="bg-indigo-500 text-white p-6 rounded-lg shadow-lg mt-24">
         <h1 className="text-3xl font-bold">Our Partnerships</h1>
         <p className="mt-2 text-sm">
           Deep Real collaborates with industry leaders to advance AI-driven solutions.
@@ -70,6 +70,6 @@ export default function PartnershipsPage() {
           </a>
         </p>
       </div>
-    </main>
+    </>
   );
 }
