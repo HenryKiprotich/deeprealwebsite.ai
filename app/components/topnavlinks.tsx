@@ -60,17 +60,7 @@ export default function TopNavLinks() {
             >
               Products
             </Link>
-          </li>
-
-          <li className="md:inline-block py-1">
-            <Link
-              href="/partnerships"
-              className="hover:underline"
-              onClick={() => setIsOpen(false)}
-            >
-              Partnerships
-            </Link>
-          </li>
+          </li>          
 
           <li className="md:inline-block py-1">
             <Link

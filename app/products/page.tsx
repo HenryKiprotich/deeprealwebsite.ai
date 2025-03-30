@@ -1,73 +1,87 @@
 "use client";
 
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 export default function ProductsPage() {
+  // State for the typewriter effect
+  const [displayText, setDisplayText] = useState("");
+  const [isTyping, setIsTyping] = useState(true);
+  
+  // The full text for the BrandVibe AI description
+  const fullText = "BrandVibe AI is an AI-powered sentiment analyzer that monitors social media user's views concerning a specific product or service. It uses a fine-tuned cardiffnlp/twitter-roberta-base language processing (NLP) model to classify comments and establish the users intent.";
+  
+  // Typewriter effect
+  useEffect(() => {
+    if (!isTyping) return;
+    
+    if (displayText.length < fullText.length) {
+      const timeout = setTimeout(() => {
+        setDisplayText(fullText.slice(0, displayText.length + 1));
+      }, 60); // Adjust typing speed here
+      
+      return () => clearTimeout(timeout);
+    } else {
+      setIsTyping(false);
+    }
+  }, [displayText, fullText, isTyping]);
+  
+  // Reset typing effect on page refresh - this only works when the page is actually refreshed
+  useEffect(() => {
+    setDisplayText("");
+    setIsTyping(true);
+  }, []);
+
   return (
     <>
       {/* Header */}
-      <div className="bg-indigo-500 text-white p-6 rounded-lg shadow-lg mt-24">
-        <h1 className="text-3xl font-bold">Our Products</h1>
-        <p className="mt-2 text-sm">
+      <div className="text-white p-6 rounded-lg shadow-lg mt-24">
+        <h1 className="text-3xl text-center font-bold">Our Products</h1>
+        <p className="mt-2 text-sm text-center">
           Explore our cutting-edge AI-driven products in various industries.
         </p>
-      </div>
+      </div>     
 
-      {/* ICT Section */}
-      <div className="mt-6 bg-blue-300 p-6 shadow rounded-lg">
-        <h2 className="text-2xl font-semibold text-gray-800">Information & Communication Technology</h2>
-        <p className="mt-2 text-gray-600">
-          We develop AI-powered solutions to enhance social media monitoring, sentiment analysis, and data security.
-        </p>
-
-        <div className="mt-6 flex flex-col md:flex-row md:items-center">
-          <div className="relative h-40 w-40 mx-auto md:mx-0 md:mr-6 rounded-lg overflow-hidden">
-            <Image src="/SocialMedia.png" alt="DeepScanAI Logo" layout="fill" objectFit="contain" />
-          </div>
-          <div className="mt-6 bg-red-300 p-6 shadow rounded-lg">
-            <h3 className="text-xl font-semibold text-gray-800">BrandVibe AI</h3>
-            <p className="mt-2 text-gray-600">
-              BrandVibe AI is an AI-powered sentiment analyzer that monitors social media user&apos;s views concerning a specific product
-              or service. It uses a fine-tuned cardiffnlp/twitter-roberta-base language processing (NLP) model to classify comments and establish the users intent.
-            </p>
-            <a href="https://brandvibeai.com" target="_blank" className="text-indigo-500 hover:underline mt-2 inline-block">
-              Try BrandVibe AI
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* Agriculture Section */}
-      <div className="mt-6 bg-green-400 p-6 shadow rounded-lg">
-        <h2 className="text-2xl font-semibold text-gray-800">Agriculture</h2>
-        <p className="mt-2 text-gray-600">
-          We are working on AI-driven solutions to enhance farm productivity and animal health monitoring.
-        </p>
-
-        <div className="mt-6 flex flex-col md:flex-row md:items-center">
-          <div className="relative h-40 w-40 mx-auto md:mx-0 md:mr-6 rounded-lg overflow-hidden">
-            <Image src="/VetImage.png" alt="Animal Health Expert System" layout="fill" objectFit="contain" />
-          </div>
-          <div className="mt-6 bg-yellow-400 p-6 shadow rounded-lg">
-            <h3 className="text-xl font-semibold text-gray-800">Animal Health Expert System (Under Development)</h3>
-            <p className="mt-2 text-gray-600">
-              Our AI-powered Animal Health Expert System will assist farmers and veterinarians in diagnosing livestock diseases
-              and suggesting appropriate treatments. Using machine learning and expert knowledge, this system will help 
-              improve animal welfare and boost productivity.
-            </p>
-            <span className="text-gray-500 mt-2 block">
-              🚀 Expected Release: Q4 2025. Collaboration for this project is open for University/College 
-              students passionate about AI. 
-            </span>
+      <div className="mt-6">
+          <div className="p-6 bg-white shadow rounded-lg">
+            <div className="flex flex-col md:flex-row">
+              <div className="md:w-1/3">
+                <div className="relative h-64 w-full mx-auto rounded-lg overflow-hidden shadow-lg">
+                  <Image 
+                    src="/SocialMedia.png" 
+                    alt="DeepScanAI Logo" 
+                    fill 
+                    style={{objectFit: "contain"}}
+                  />
+                </div>
+              </div>
+              
+              <div className="md:w-2/3 md:pl-6 mt-4 md:mt-0">
+                <h3 className="text-xl font-semibold text-gray-800 mb-3">BrandVibe AI</h3>
+                <div className="h-32 overflow-hidden"> {/* Fixed height container for text */}
+                  <p className="text-gray-600 typewriter-text">
+                    {displayText}
+                    {isTyping && <span className="animate-pulse">|</span>}
+                  </p>
+                </div>
+                <a 
+                  href="https://brandvibeai.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="mt-4 inline-block px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+                >
+                  Try BrandVibe AI
+                </a>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-
+           
       {/* Future Products Section */}
-      <div className="mt-6 bg-white p-6 shadow rounded-lg">
+      <div className="mt-6 bg-blue-300 p-6 shadow rounded-lg">
         <h2 className="text-2xl font-semibold text-gray-800">Upcoming AI Innovations</h2>
         <p className="mt-2 text-gray-600">
-          We are continuously developing AI-powered solutions across various industries, including Healthcare, Education, and Business Automation.
+          We are continuously developing AI-powered solutions across various industries, including Healthcare, Education, Finance and Business Automation.
         </p>
         <p className="mt-2 text-gray-600">
           If you are interested in partnering with us to develop AI solutions, contact us at:

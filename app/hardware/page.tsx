@@ -35,7 +35,7 @@ export default function AIHardwarePage() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
         {AI_HARDWARE_DEVICES.map(({ name, imageUrl, link }) => (
-          <div key={name} className="bg-gray-800 rounded-lg shadow-lg p-6 text-center transform hover:scale-105 transition duration-300">
+          <div key={name} className="bg-white rounded-lg shadow-lg p-6 text-center transform hover:scale-105 transition duration-300">
             <div className="relative h-48 w-full mb-4">
               <Image
                 src={imageUrl}
