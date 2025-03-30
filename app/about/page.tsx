@@ -4,15 +4,18 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
 export default function AboutPage() {
-  // State for typewriter effect
+  // Existing state and effects for typewriter animations
   const [displayText1, setDisplayText1] = useState("");
   const [displayText2, setDisplayText2] = useState("");
   const [displayText3, setDisplayText3] = useState("");
   const [isTyping1, setIsTyping1] = useState(true);
   const [isTyping2, setIsTyping2] = useState(true);
   const [isTyping3, setIsTyping3] = useState(true);
+  
+  // New state for controlling entrance animations
+  const [showContent, setShowContent] = useState(false);
 
-  // Full testimonial texts
+  // Existing testimonial texts and effects
   const fullText1 = "Deep Real has completely transformed our operations with their AI solutions. Our workflow is more efficient than ever!";
   const fullText2 = "Their AI strategies have helped us make smarter decisions and take our business to the next level.";
   const fullText3 = "I can't imagine running my business without their AI solutions. They truly understand our needs!";
@@ -62,7 +65,7 @@ export default function AboutPage() {
     }
   }, [displayText3, fullText3, isTyping3]);
 
-  // Reset typing effect when component mounts or is refreshed
+  // Reset typing effect and trigger entrance animations when component mounts or is refreshed
   useEffect(() => {
     setDisplayText1("");
     setDisplayText2("");
@@ -70,12 +73,21 @@ export default function AboutPage() {
     setIsTyping1(true);
     setIsTyping2(true);
     setIsTyping3(true);
+    
+    // Trigger animations after a small delay for better effect
+    setShowContent(false);
+    const timer = setTimeout(() => {
+      setShowContent(true);
+    }, 100);
+    
+    return () => clearTimeout(timer);
   }, []);
 
   return (
     <>    
       {/* Who We Are Section */}
-      <div className="mt-24 p-8 rounded-lg shadow-lg">
+      <div className={`mt-24 p-8 rounded-lg shadow-lg transform transition-all duration-1000 ease-out 
+                       ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'}`}>
         <h2 className="text-3xl text-center font-semibold text-white">Who We Are</h2>
         <p className="mt-4 text-white">
           Deep Real Inc. is a dynamic startup focused on providing innovative Artificial Intelligence (AI) solutions.
@@ -84,29 +96,38 @@ export default function AboutPage() {
       </div>
 
       {/* Services Section */}
-      <div className="mt-8 bg-gray-200 p-8 rounded-lg shadow-lg">
+      <div className={`mt-8 p-8 rounded-lg shadow-lg bg-white transform transition-all duration-1000 ease-out delay-300
+                       ${showContent ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'}`}>
         <h2 className="text-3xl font-semibold text-black text-center">Our Services</h2>
         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Service 1 */}
-          <div className="text-center p-6 bg-indigo-800 rounded-lg hover:bg-indigo-700 transition-colors shadow-md">
+          <div className={`text-center p-6 bg-indigo-800 rounded-lg hover:bg-indigo-700 transition-colors shadow-md
+                          transform transition-all duration-700 ease-out delay-500
+                          ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h3 className="text-xl font-semibold text-white">Financial Credit Scoring AI</h3>
             <p className="text-white text-sm mt-2">Our AI models analyze financial data to predict creditworthiness, helping lenders make informed decisions and reduce default risk.</p>
           </div>
 
           {/* Service 2 */}
-          <div className="text-center p-6 bg-blue-700 rounded-lg hover:bg-blue-600 transition-colors shadow-md">
+          <div className={`text-center p-6 bg-blue-700 rounded-lg hover:bg-blue-600 transition-colors shadow-md
+                          transform transition-all duration-700 ease-out delay-600
+                          ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h3 className="text-xl font-semibold text-white">Autonomous Agent Development</h3>
             <p className="text-white text-sm mt-2">We build intelligent agents for workflow automation and decision-making processes.</p>
           </div>    
 
           {/* Service 3 */}
-          <div className="text-center p-6 bg-blue-800 rounded-lg hover:bg-blue-700 transition-colors shadow-md">
+          <div className={`text-center p-6 bg-blue-800 rounded-lg hover:bg-blue-700 transition-colors shadow-md
+                          transform transition-all duration-700 ease-out delay-700
+                          ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h3 className="text-xl font-semibold text-white">AI Strategy Development</h3>
             <p className="text-white text-sm mt-2">We help enterprises develop AI strategies to leverage advanced technology for growth.</p>
           </div>
           
           {/* Service 4 - Social Media Monitoring */}
-          <div className="text-center p-6 bg-indigo-700 rounded-lg hover:bg-indigo-600 transition-colors shadow-md">
+          <div className={`text-center p-6 bg-indigo-700 rounded-lg hover:bg-indigo-600 transition-colors shadow-md
+                          transform transition-all duration-700 ease-out delay-800
+                          ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h3 className="text-xl font-semibold text-white">Social Media Sentiment Analysis</h3>
             <p className="text-white text-sm mt-2">Our AI tracks and analyzes social media conversations about your brand, products or services to provide actionable consumer perception insights.</p>
           </div>
@@ -114,10 +135,12 @@ export default function AboutPage() {
       </div>
       
       {/* Customer Testimonials Section */}
-      <div className="mt-8 bg-gradient-to-r from-blue-800 via-indigo-700 to-blue-600 p-8 rounded-lg shadow-lg">
+      <div className={`mt-8 bg-gradient-to-r from-blue-800 via-indigo-700 to-blue-600 p-8 rounded-lg shadow-lg
+                      transform transition-all duration-1000 ease-out delay-1000
+                      ${showContent ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-20'}`}>
         <h2 className="text-3xl font-semibold text-white text-center">Happy Customers</h2>
         <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Testimonial 1 with typewriter effect */}
+          {/* Testimonial content remains the same */}
           <div className="p-6 bg-indigo-800 rounded-lg text-center text-white shadow-md hover:shadow-lg transition-shadow">
             <div className="h-32 flex items-center justify-center">
               <p className="italic">
@@ -131,7 +154,6 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* Testimonial 2 with typewriter effect */}
           <div className="p-6 bg-blue-700 rounded-lg text-center text-white shadow-md hover:shadow-lg transition-shadow">
             <div className="h-32 flex items-center justify-center">
               <p className="italic">
@@ -145,7 +167,6 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* Testimonial 3 with typewriter effect */}
           <div className="p-6 bg-indigo-700 rounded-lg text-center text-white shadow-md hover:shadow-lg transition-shadow">
             <div className="h-32 flex items-center justify-center">
               <p className="italic">
@@ -160,13 +181,16 @@ export default function AboutPage() {
           </div>
         </div>
       </div>
+      
       {/* Meet the Founders Section */}
-      <div className="mt-8 bg-gray-600 p-8 rounded-lg shadow-lg">
-        <h2 className="text-3xl font-semibold text-black text-center">Meet Our Founders</h2>
+      <div className={`mt-8 p-8 rounded-lg shadow-lg
+                      transform transition-all duration-1000 ease-out delay-1200
+                      ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}>
+        <h2 className="text-3xl font-semibold text-white text-center">Meet Our Founders</h2>
         <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Founder 1 */}
-          <div className="text-center bg-opacity-40 p-6 rounded-lg">
-            <div className="w-40 h-40 mx-auto border-indigo-400 shadow-xl">
+          <div className="text-center bg-blue-900 bg-opacity-40 p-6 rounded-lg">
+            <div className="w-40 h-40 mx-auto shadow-xl">
               <Image src="/robot.png" alt="Henry Kiprotich" width={160} height={160} className="rounded-full object-cover" />
             </div>
             <h3 className="mt-4 text-xl font-semibold text-white">Henry Kiprotich</h3>
@@ -174,8 +198,8 @@ export default function AboutPage() {
           </div>
 
           {/* Founder 2 */}
-          <div className="text-center bg-opacity-40 p-6 rounded-lg">
-            <div className="w-40 h-40 mx-auto border-blue-400 shadow-xl">
+          <div className="text-center bg-indigo-900 bg-opacity-40 p-6 rounded-lg">
+            <div className="w-40 h-40 mx-auto shadow-xl">
               <Image 
                 src="/kenny_avatar.png"
                 alt="Kennedy Wambua"
@@ -189,7 +213,7 @@ export default function AboutPage() {
           </div>
 
           {/* Founder 3 */}
-          <div className="text-center bg-opacity-40 p-6 rounded-lg">
+          <div className="text-center bg-blue-900 bg-opacity-40 p-6 rounded-lg">
             <div className="w-40 h-40 mx-auto shadow-xl">
               <Image 
                 src="/GodfreyAvatar.png"

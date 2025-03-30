@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   FaChevronLeft,
   FaChevronRight,
@@ -21,6 +21,19 @@ import {
 } from "react-icons/fa";
 
 export default function HomePage() {
+  // Animation states
+  const [showInitialContent, setShowInitialContent] = useState(false);
+  const [visibleSections, setVisibleSections] = useState({
+    products: false,
+    education: false,
+    educationItems: false
+  });
+  
+  // Refs for scroll animations
+  const productsRef = useRef<HTMLDivElement>(null);
+  const educationRef = useRef<HTMLDivElement>(null);
+  const educationItemsRef = useRef<HTMLDivElement>(null);
+  
   // Items for grid layout section
   const productItems = [
     {
@@ -63,10 +76,50 @@ export default function HomePage() {
     },
   ];
 
+  // Set up animations
+  useEffect(() => {
+    // Trigger initial animations
+    setTimeout(() => {
+      setShowInitialContent(true);
+    }, 100);
+    
+    // Setup intersection observer for scroll animations
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+    
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry: IntersectionObserverEntry) => {
+        if (entry.isIntersecting) {
+          if (entry.target === productsRef.current) {
+            setVisibleSections(prev => ({ ...prev, products: true }));
+          } else if (entry.target === educationRef.current) {
+            setVisibleSections(prev => ({ ...prev, education: true }));
+          } else if (entry.target === educationItemsRef.current) {
+            setVisibleSections(prev => ({ ...prev, educationItems: true }));
+          }
+        }
+      });
+    };
+    
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    
+    if (productsRef.current) observer.observe(productsRef.current);
+    if (educationRef.current) observer.observe(educationRef.current);
+    if (educationItemsRef.current) observer.observe(educationItemsRef.current);
+    
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <>
-      {/* Hero Header Section */}
-      <header className="mt-24 text-center mb-1">
+      {/* Hero Header Section - Animate from top */}
+      <header className={`mt-24 text-center mb-1 transform transition-all duration-1000 ease-out 
+                         ${showInitialContent ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'}`}>
         <h1 className="text-xl md:text-3xl font-extrabold mb-4">
           Welcome to DeepReal<span className="text-sm align-super">AI</span>
         </h1>
@@ -79,7 +132,8 @@ export default function HomePage() {
           covered.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto mb-6">
-          <div className="bg-indigo-800 bg-opacity-40 p-3 rounded-lg flex items-start hover:bg-indigo-700 hover:shadow-lg transform hover:scale-105 transition-all duration-300 cursor-pointer">
+          <div className={`bg-indigo-800 bg-opacity-40 p-3 rounded-lg flex items-start hover:bg-indigo-700 hover:shadow-lg transform hover:scale-105 transition-all duration-300 cursor-pointer
+                          ${showInitialContent ? 'opacity-100 translate-x-0 delay-200' : 'opacity-0 -translate-x-10'}`}>
             <div className="text-green-400 mr-3 shrink-0 mt-1 group-hover:text-green-300">
               <FaRobot size={18} />
             </div>
@@ -89,7 +143,8 @@ export default function HomePage() {
             </span>
           </div>
 
-          <div className="bg-indigo-800 bg-opacity-40 p-3 rounded-lg flex items-start hover:bg-indigo-700 hover:shadow-lg transform hover:scale-105 transition-all duration-300 cursor-pointer">
+          <div className={`bg-indigo-800 bg-opacity-40 p-3 rounded-lg flex items-start hover:bg-indigo-700 hover:shadow-lg transform hover:scale-105 transition-all duration-300 cursor-pointer
+                          ${showInitialContent ? 'opacity-100 translate-x-0 delay-300' : 'opacity-0 translate-x-10'}`}>
             <div className="text-green-400 mr-3 shrink-0 mt-1 group-hover:text-green-300">
               <FaChartLine size={18} />
             </div>
@@ -99,7 +154,8 @@ export default function HomePage() {
             </span>
           </div>
 
-          <div className="bg-indigo-800 bg-opacity-40 p-3 rounded-lg flex items-start hover:bg-indigo-700 hover:shadow-lg transform hover:scale-105 transition-all duration-300 cursor-pointer">
+          <div className={`bg-indigo-800 bg-opacity-40 p-3 rounded-lg flex items-start hover:bg-indigo-700 hover:shadow-lg transform hover:scale-105 transition-all duration-300 cursor-pointer
+                          ${showInitialContent ? 'opacity-100 translate-x-0 delay-400' : 'opacity-0 -translate-x-10'}`}>
             <div className="text-green-400 mr-3 shrink-0 mt-1 group-hover:text-green-300">
               <FaCogs size={18} />
             </div>
@@ -109,7 +165,8 @@ export default function HomePage() {
             </span>
           </div>
 
-          <div className="bg-indigo-800 bg-opacity-40 p-3 rounded-lg flex items-start hover:bg-indigo-700 hover:shadow-lg transform hover:scale-105 transition-all duration-300 cursor-pointer">
+          <div className={`bg-indigo-800 bg-opacity-40 p-3 rounded-lg flex items-start hover:bg-indigo-700 hover:shadow-lg transform hover:scale-105 transition-all duration-300 cursor-pointer
+                          ${showInitialContent ? 'opacity-100 translate-x-0 delay-500' : 'opacity-0 translate-x-10'}`}>
             <div className="text-green-400 mr-3 shrink-0 mt-1 group-hover:text-green-300">
               <FaGraduationCap size={18} />
             </div>
@@ -123,12 +180,21 @@ export default function HomePage() {
 
       {/* Main Content Section */}
       <div>
-        {/* Grid Layout Section - 3 items per row */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Grid Layout Section - 3 items per row - Animate from left */}
+        <div 
+          ref={productsRef}
+          className={`grid grid-cols-1 md:grid-cols-3 gap-8 transform transition-all duration-1000
+                      ${visibleSections.products ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'}`}
+        >
           {productItems.map((item, index) => (
             <div
               key={index}
-              className="bg-gradient-to-b from-indigo-800 to-gray-900 rounded-lg shadow-xl overflow-hidden transform hover:scale-105 transition duration-300"
+              className={`bg-gradient-to-b from-indigo-800 to-gray-900 rounded-lg shadow-xl overflow-hidden transform hover:scale-105 transition duration-300
+                         ${visibleSections.products ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+              style={{ 
+                transitionDelay: visibleSections.products ? `${200 + (index * 100)}ms` : '0ms',
+                transitionProperty: 'opacity, transform'
+              }}
             >
               <div className="relative w-full h-48">
                 <Image
@@ -145,8 +211,13 @@ export default function HomePage() {
           ))}
         </div>
 
-        {/* Educational Attraction Section */}
-        <div className="mt-6 mb-1 bg-gradient-to-r from-blue-900 to-purple-900 rounded-xl shadow-2xl overflow-hidden">
+        {/* Educational Attraction Section - Animate from right */}
+        <div 
+          ref={educationRef}
+          className={`mt-6 mb-1 bg-gradient-to-r from-blue-900 to-purple-900 rounded-xl shadow-2xl overflow-hidden
+                      transform transition-all duration-1000
+                      ${visibleSections.education ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-20'}`}
+        >
           <div className="p-8 md:p-12">
             <h2 className="text-2xl md:text-2xl font-bold text-white mb-4 text-center">
               Empower Your Future with AI – Train Smarter, Earn Faster!{" "}
@@ -162,7 +233,13 @@ export default function HomePage() {
 
             {/* Update the education section panels with hover effects */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-4xl mx-auto mb-4">
-              <div className="bg-blue-900 bg-opacity-40 p-4 rounded-lg flex items-start hover:bg-blue-800 hover:shadow-lg transform hover:scale-105 transition-all duration-300 cursor-pointer">
+              <div className={`bg-blue-900 bg-opacity-40 p-4 rounded-lg flex items-start hover:bg-blue-800 hover:shadow-lg transform hover:scale-105 transition-all duration-300 cursor-pointer`}
+                  style={{ 
+                    opacity: visibleSections.education ? 1 : 0,
+                    transform: visibleSections.education ? 'translateY(0)' : 'translateY(10px)',
+                    transitionDelay: '300ms',
+                    transitionProperty: 'opacity, transform'
+                  }}>
                 <div className="text-green-400 mr-3 mt-1 group-hover:text-green-300">
                   <FaServer size={18} />
                 </div>
@@ -171,7 +248,13 @@ export default function HomePage() {
                 </span>
               </div>
 
-              <div className="bg-blue-900 bg-opacity-40 p-4 rounded-lg flex items-start hover:bg-blue-800 hover:shadow-lg transform hover:scale-105 transition-all duration-300 cursor-pointer">
+              <div className={`bg-blue-900 bg-opacity-40 p-4 rounded-lg flex items-start hover:bg-blue-800 hover:shadow-lg transform hover:scale-105 transition-all duration-300 cursor-pointer`}
+                  style={{ 
+                    opacity: visibleSections.education ? 1 : 0,
+                    transform: visibleSections.education ? 'translateY(0)' : 'translateY(10px)',
+                    transitionDelay: '400ms',
+                    transitionProperty: 'opacity, transform'
+                  }}>
                 <div className="text-green-400 mr-3 mt-1 group-hover:text-green-300">
                   <FaDatabase size={18} />
                 </div>
@@ -180,7 +263,13 @@ export default function HomePage() {
                 </span>
               </div>
 
-              <div className="bg-blue-900 bg-opacity-40 p-4 rounded-lg flex items-start hover:bg-blue-800 hover:shadow-lg transform hover:scale-105 transition-all duration-300 cursor-pointer">
+              <div className={`bg-blue-900 bg-opacity-40 p-4 rounded-lg flex items-start hover:bg-blue-800 hover:shadow-lg transform hover:scale-105 transition-all duration-300 cursor-pointer`}
+                  style={{ 
+                    opacity: visibleSections.education ? 1 : 0,
+                    transform: visibleSections.education ? 'translateY(0)' : 'translateY(10px)',
+                    transitionDelay: '500ms',
+                    transitionProperty: 'opacity, transform'
+                  }}>
                 <div className="text-green-400 mr-3 mt-1 group-hover:text-green-300">
                   <FaBrain size={18} />
                 </div>
@@ -189,7 +278,13 @@ export default function HomePage() {
                 </span>
               </div>
 
-              <div className="bg-blue-900 bg-opacity-40 p-4 rounded-lg flex items-start hover:bg-blue-800 hover:shadow-lg transform hover:scale-105 transition-all duration-300 cursor-pointer">
+              <div className={`bg-blue-900 bg-opacity-40 p-4 rounded-lg flex items-start hover:bg-blue-800 hover:shadow-lg transform hover:scale-105 transition-all duration-300 cursor-pointer`}
+                  style={{ 
+                    opacity: visibleSections.education ? 1 : 0,
+                    transform: visibleSections.education ? 'translateY(0)' : 'translateY(10px)',
+                    transitionDelay: '600ms',
+                    transitionProperty: 'opacity, transform'
+                  }}>
                 <div className="text-green-400 mr-3 mt-1 group-hover:text-green-300">
                   <FaGlobe size={18} />
                 </div>
@@ -206,7 +301,14 @@ export default function HomePage() {
               revolution.
             </p>
 
-            <div className="text-center">
+            <div className="text-center"
+                style={{ 
+                  opacity: visibleSections.education ? 1 : 0,
+                  transform: visibleSections.education ? 'translateY(0)' : 'translateY(10px)',
+                  transitionDelay: '700ms',
+                  transitionDuration: '700ms',
+                  transitionProperty: 'opacity, transform'
+                }}>
               <a
                 href="/auth/signinup"
                 className="inline-block px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 rounded-lg text-white text-xl font-bold shadow-lg transform hover:scale-105 transition"
@@ -219,12 +321,22 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Education Products Section */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Education Products Section - Animate from bottom */}
+        <div 
+          ref={educationItemsRef}
+          className={`mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 transform transition-all duration-1000
+                      ${visibleSections.educationItems ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
+        >
           {educationItems.map((item, index) => (
             <div
               key={index}
               className="bg-gradient-to-b from-purple-800 to-indigo-900 rounded-lg shadow-xl overflow-hidden transform hover:scale-105 transition duration-300"
+              style={{ 
+                opacity: visibleSections.educationItems ? 1 : 0,
+                transform: visibleSections.educationItems ? 'translateY(0)' : 'translateY(10px)',
+                transitionDelay: `${200 + (index * 100)}ms`,
+                transitionProperty: 'opacity, transform'
+              }}
             >
               <div className="relative w-full h-48">
                 <Image
