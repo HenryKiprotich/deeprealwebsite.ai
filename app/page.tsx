@@ -117,20 +117,25 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Hero Header Section - Animate from top */}
-      <header className={`mt-24 text-center mb-1 transform transition-all duration-1000 ease-out 
-                         ${showInitialContent ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'}`}>
-        <h1 className="text-xl md:text-3xl font-extrabold mb-4">
-          Welcome to DeepReal<span className="text-sm align-super">AI</span>
-        </h1>
+      <header 
+        className={`mt-24 text-center mb-1 transform transition-all duration-1000 ease-out 
+                   relative bg-cover bg-center
+                   ${showInitialContent ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'}`}
+        style={{ backgroundImage: 'url("/binary.png")' }}
+      >
+        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+        <div className="relative z-10 py-12 px-4">
+          <h1 className="text-xl text-white md:text-3xl font-extrabold mb-4">
+            Welcome to DeepReal<span className="text-sm align-super">AI</span>
+          </h1>
 
-        <p className="max-w-3xl mx-auto text-lg text-indigo-200 mb-6">
-          At DeepReal <span className="text-sm align-super">AI</span>, we help
-          businesses harness the power of AI and data to drive growth,
-          efficiency, and innovation. Whether you are looking to enhance
-          decision-making, optimize operations, or scale with AI, we got you
-          covered.
-        </p>
+          <p className="max-w-3xl mx-auto text-lg text-indigo-200 mb-6">
+            At DeepReal <span className="text-sm align-super">AI</span>, we help
+            businesses harness the power of AI and data to drive growth,
+            efficiency, and innovation. Whether you are looking to enhance
+            decision-making, optimize operations, or scale with AI, we got you
+            covered.
+          </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto mb-6">
           <div className={`bg-indigo-800 bg-opacity-40 p-3 rounded-lg flex items-start hover:bg-indigo-700 hover:shadow-lg transform hover:scale-105 transition-all duration-300 cursor-pointer
                           ${showInitialContent ? 'opacity-100 translate-x-0 delay-200' : 'opacity-0 -translate-x-10'}`}>
@@ -176,6 +181,7 @@ export default function HomePage() {
             </span>
           </div>
         </div>
+        </div> {/* This is the closing tag for the "relative z-10 py-12 px-4" div */}
       </header>
 
       {/* Main Content Section */}
