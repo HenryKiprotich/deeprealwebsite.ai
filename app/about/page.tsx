@@ -18,7 +18,7 @@ export default function AboutPage() {
   // Existing testimonial texts and effects
   const fullText1 = "Deep Real has completely transformed our operations with their AI solutions. Our workflow is more efficient than ever!";
   const fullText2 = "Their AI strategies have helped us make smarter decisions and take our business to the next level.";
-  const fullText3 = "I can't imagine running my business without their AI solutions. They truly understand our needs!";
+  const fullText3 = "I can&apos;t imagine running my business without their AI solutions. They truly understand our needs!";
 
   // Typing effect for testimonial 1
   useEffect(() => {

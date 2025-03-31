@@ -226,7 +226,7 @@ export default function HomePage() {
 
             <p className="text-center text-indigo-200 text-lg mb-4 max-w-2xl mx-auto">
               Are you ready to step into the world of AI and unlock endless
-              opportunities? At DeepReal AI, we don't just give you access to AI
+              opportunities? At DeepReal AI, we don&apos;t just give you access to AI
               training and data annotation accounts—we equip you with the skills
               to thrive!
             </p>
